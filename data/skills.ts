@@ -1,38 +1,64 @@
 export interface Skill {
   name: string;
-  category: "backend" | "frontend" | "database" | "cloud_tools";
-  iconName?: string; // mapping to simple icons if needed
+  category: "languages" | "frameworks" | "desktop" | "database" | "cloud" | "tools" | "build_tools" | "concepts";
 }
 
 export const skills: Skill[] = [
-  // Backend
-  { name: "Java", category: "backend" },
-  { name: "Spring Boot", category: "backend" },
-  { name: "NestJS", category: "backend" },
-  { name: "Hibernate", category: "backend" },
-  { name: "REST APIs", category: "backend" },
-  { name: "JWT", category: "backend" },
-  { name: "Microservices", category: "backend" },
+  // Languages
+  { name: "Java", category: "languages" },
+  { name: "TypeScript", category: "languages" },
+  { name: "JavaScript", category: "languages" },
+  { name: "SQL", category: "languages" },
   
-  // Frontend
-  { name: "React", category: "frontend" },
-  { name: "Next.js", category: "frontend" },
-  { name: "TypeScript", category: "frontend" },
-  { name: "Tailwind CSS", category: "frontend" },
-  { name: "HTML5", category: "frontend" },
-  { name: "CSS3", category: "frontend" },
+  // Frameworks
+  { name: "Spring Boot", category: "frameworks" },
+  { name: "NestJS", category: "frameworks" },
+  { name: "React.js", category: "frameworks" },
+  { name: "Next.js", category: "frameworks" },
+  { name: "Node.js", category: "frameworks" },
+  { name: "Express.js", category: "frameworks" },
+  
+  // Desktop
+  { name: "Rust", category: "desktop" },
+  { name: "Tauri", category: "desktop" },
   
   // Database
   { name: "MySQL", category: "database" },
   { name: "PostgreSQL", category: "database" },
-  { name: "Prisma ORM", category: "database" },
+  { name: "Prisma", category: "database" },
+  { name: "Hibernate", category: "database" },
+  { name: "JPA", category: "database" },
   
-  // Cloud & Tools
-  { name: "AWS EC2", category: "cloud_tools" },
-  { name: "AWS RDS", category: "cloud_tools" },
-  { name: "AWS S3", category: "cloud_tools" },
-  { name: "GitHub", category: "cloud_tools" },
-  { name: "Git", category: "cloud_tools" },
-  { name: "Maven", category: "cloud_tools" },
-  { name: "Jira", category: "cloud_tools" }
+  // Cloud
+  { name: "AWS EC2", category: "cloud" },
+  { name: "AWS RDS", category: "cloud" },
+  { name: "AWS S3", category: "cloud" },
+  { name: "GitHub Actions", category: "cloud" },
+  
+  // Tools
+  { name: "Git", category: "tools" },
+  { name: "GitHub", category: "tools" },
+  { name: "Postman", category: "tools" },
+  { name: "VS Code", category: "tools" },
+  { name: "IntelliJ IDEA", category: "tools" },
+  { name: "Jira", category: "tools" },
+  
+  // Build Tools
+  { name: "Maven", category: "build_tools" },
+  { name: "Gradle", category: "build_tools" },
+  { name: "npm", category: "build_tools" },
+  
+  // Concepts
+  { name: "REST APIs", category: "concepts" },
+  { name: "Authentication", category: "concepts" },
+  { name: "JWT", category: "concepts" },
+  { name: "RBAC", category: "concepts" },
+  { name: "System Design", category: "concepts" },
+  { name: "Microservices", category: "concepts" },
+  { name: "Responsive Design", category: "concepts" },
+  { name: "Performance Optimization", category: "concepts" },
+  { name: "Deployment", category: "concepts" },
+  { name: "ORM", category: "concepts" },
+  { name: "API Integration", category: "concepts" },
+  { name: "Animations", category: "concepts" }
 ];

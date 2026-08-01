@@ -12,7 +12,7 @@ export interface Project {
   liveUrl?: string;
   caseStudy: {
     problem: string;
-    architecture: string; // Mermaid block or diagram explanation
+    architecture: string;
     databaseDesign: string;
     challenges: string;
     solution: string;
@@ -20,138 +20,126 @@ export interface Project {
   };
 }
 
+export interface BusinessSolution {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  githubUrl?: string;
+  problem: string;
+  solution: string;
+  impact: string[];
+}
+
 export const projects: Project[] = [
   {
-    id: "ejtime",
-    title: "eJTime",
-    subtitle: "Enterprise SaaS Workforce Management",
-    description: "A multi-tenant SaaS workforce management platform supporting web, desktop, and mobile workflows with secure JWT/OTP authentication, reporting, and automated time tracking.",
-    longDescription: "eJTime is an enterprise-grade, multi-tenant SaaS platform built to streamline employee tracking, leave approvals, attendance auditing, and reporting. Designed with a robust backend using NestJS and Prisma ORM, it handles thousands of clock-in/out logs daily, resolves complex time zone offsets, and provides administrators with comprehensive reporting features.",
-    techStack: ["Next.js", "NestJS", "Prisma ORM", "MySQL", "JWT", "OTP Authentication", "Tailwind CSS", "TypeScript"],
+    id: "learnsphere",
+    title: "LearnSphere",
+    subtitle: "E-Learning Management Platform",
+    description: "Designed a full-stack educational system featuring role-based dashboards, course management modules, and automated student grading systems.",
+    longDescription: "LearnSphere is an interactive online educational portal bridging the gap between trainers and students. Designed with a robust Spring Boot backend and React SPA, it features secure course authoring, module trackers, dynamic assignments, and a streamlined evaluation dashboard for instructors.",
+    techStack: ["Spring Boot", "React.js", "MySQL", "JWT Authentication", "Spring Security", "Tailwind CSS", "REST APIs", "Maven"],
     features: [
-      "Multi-tenant architecture separating corporate entities and data",
-      "Secure double-factor authentication using JWT and OTP codes",
-      "Dynamic session tracking and precise clock-in/out mechanics",
-      "Comprehensive approval workflows for leaves and timesheets",
-      "Automated PDF/CSV reporting and real-time activity dashboards",
-      "Time-zone aware calculations resolving discrepancies across remote workers"
+      "Role-based portals with customized interfaces for students, trainers, and administrators",
+      "Dynamic course building with interactive lesson steps and assignment attachments",
+      "Secure student submission tracking with instant trainer grading inputs",
+      "Automated course progress tracking and lesson completion calculators",
+      "Analytics dashboards mapping class grades and submission ratios for trainers"
     ],
-    role: "Full Stack Developer (at eJAmerica)",
+    role: "Lead Full Stack Engineer",
     metrics: [
-      { label: "Uptime", value: "99.9%" },
-      { label: "Sync Latency", value: "< 200ms" },
-      { label: "Data Integrity", value: "100%" }
+      { label: "API Endpoints", value: "35+" },
+      { label: "Query Speeds", value: "~32ms" },
+      { label: "Grade Accuracy", value: "100%" }
     ],
-    githubUrl: "https://github.com/Gani4u/bharath-talent-connect", // mapping as part of experience/code references
-    liveUrl: "#",
+    githubUrl: "https://github.com/Gani4u/LearnSphear",
+    liveUrl: "https://github.com/Gani4u/LearnSphear",
     caseStudy: {
-      problem: "Enterprise clients needed a reliable, secure, and real-time mechanism to track remote/on-site employee hours without time zone mismatch bugs, double clock-ins, or slow reporting compilation.",
-      architecture: `
-\`\`\`mermaid
-graph TD
-    Client[Next.js Web / Desktop Client] -->|HTTPS / WSS| ALB[AWS Application Load Balancer]
-    ALB -->|API Requests| NestJS[NestJS API Server]
-    NestJS -->|JWT / OTP Guard| Auth[Authentication Service]
-    NestJS -->|ORM Queries| Prisma[Prisma ORM Client]
-    Prisma -->|Primary / Replica| DB[(MySQL Database)]
-    NestJS -->|Caching| Redis[(Redis Session Cache)]
-\`\`\``,
-      databaseDesign: "Designed with a relational model including Tenant, User, Session, ClockLog, LeaveRequest, and Role tables. Handled via Prisma relations with strict foreign key constraints and indexes on userId and timestamp.",
-      challenges: "Managing overlapping clock logs from multi-country teams with different timezone settings led to inaccurate hour reports. Integrating push notifications for approval requests had high delivery failure rates on mobile.",
-      solution: "Standardized all database clock storage in UTC, calculating local times on the client side using UTC-offset mappings. Implemented a robust background worker retry system using bull queues for push notifications.",
-      learnings: "Learned the critical value of timezone standardizations at the DB tier, multi-tenant database isolation strategies, and optimizing ORM query patterns under heavy write loads."
+      problem: "Traditional educational software systems are clunky, lack mobile-first responsiveness, and experience server latency bottlenecks during bulk file uploads for assignments.",
+      architecture: "React SPA Frontend communicating via secure REST APIs with a Spring Boot Service Layer, backed by a relational MySQL DB and optimized disk streaming buffers.",
+      databaseDesign: "MySQL schema containing Course, Module, Lesson, Assignment, Submission, and User tables. Fully indexed on user and course foreign keys to optimize pagination speeds.",
+      challenges: "High JVM memory footprint when processing concurrent ZIP archive downloads, leading to database connection timeouts and OutOfMemory errors.",
+      solution: "Implemented chunked resource streaming utilizing Spring HttpMessageConverters to write data streams directly to client network outputs without buffering files in memory.",
+      learnings: "Mastered token signatures in Spring Security, optimized heavy file I/O workflows, and refined microservice schema segregation."
     }
   },
   {
     id: "aquatrack",
     title: "AquaTrack",
-    subtitle: "Water Plant Management System",
-    description: "An industrial water plant management system tracking stock, export, vending machine monitoring, and revenue analytics, backed by a Spring Boot engine deployed on AWS.",
-    longDescription: "AquaTrack is an end-to-end industrial software designed for water processing plants. It connects physical vending machine data, tracks inventory levels of raw water, bottles, caps, and chemical logs, and delivers dynamic revenue reports for plant operators. Built to run reliably on AWS EC2, S3, and RDS.",
-    techStack: ["Spring Boot", "JPA / Hibernate", "PostgreSQL", "AWS EC2", "AWS S3", "AWS RDS", "React", "Chart.js"],
+    subtitle: "Industrial Water Plant Manager",
+    description: "Architected a cloud-integrated telemetry system tracking production stock, export flows, vending machines, and revenue metrics in real-time.",
+    longDescription: "AquaTrack is an industrial plant analytics platform linking remote physical water vending terminals to a centralized database. Deployed securely on AWS, it delivers granular auditing controls over raw supplies, bottles, cap inventories, distributor shipments, and automated sales reporting.",
+    techStack: ["Spring Boot", "Hibernate ORM", "PostgreSQL", "AWS EC2", "AWS RDS", "AWS S3", "React.js", "Chart.js"],
     features: [
-      "Real-time vending machine stock and status monitoring",
-      "Inventory tracking for containers, chemical supplies, and finished products",
-      "Automated billing, sales logging, and revenue analysis graphs",
-      "AWS S3 integration for secure document and invoice archiving",
-      "Role-based control panel (Plant Manager, Operator, Distributor)"
+      "Telemetry buffers syncing sales and machine statuses dynamically",
+      "Raw materials inventory logging covering water supplies, caps, and chemical agents",
+      "Shipment manifests tracking distributors, load sizes, and routes",
+      "AWS S3 resource archive securing PDF receipts and billing files",
+      "Manager panels displaying real-time profit margins and stock predictions"
     ],
-    role: "Backend Architect & Cloud Deployer",
+    role: "Cloud Backend Architect",
     metrics: [
-      { label: "Deployment", value: "AWS EC2/RDS" },
-      { label: "Storage", value: "AWS S3" },
-      { label: "Query Speed", value: "~45ms" }
+      { label: "Telemetry Delay", value: "< 2s" },
+      { label: "Sync Rates", value: "99.9%" },
+      { label: "RDS Response", value: "~45ms" }
     ],
-    githubUrl: "https://github.com/Akshay-Ak47/riskmanagement", // pointing to relevant enterprise backend architecture
+    githubUrl: "https://github.com/Akshay-Ak47/riskmanagement",
     liveUrl: "#",
     caseStudy: {
-      problem: "Water plant operators lacked centralized visibility over disconnected vending machines and raw stock, leading to stockouts, lost sales records, and manual spreadsheet entries.",
-      architecture: `
-\`\`\`mermaid
-graph TD
-    WebUI[React Frontend Dashboard] -->|REST APIs| SB[Spring Boot Service]
-    SB -->|Security| SpringSec[Spring Security + JWT]
-    SB -->|JPA / Hibernate| PG[(AWS RDS PostgreSQL)]
-    SB -->|File Uploads| S3[(AWS S3 Bucket)]
-    VM[Water Vending IoT Clones] -->|Telemetry JSON| SB
-\`\`\``,
-      databaseDesign: "Utilized PostgreSQL with tables: VendingMachine, StockItem, Transaction, User, AlertLog. Relational joins mapped sales directly to machine inventories.",
-      challenges: "Vending machines often went offline in remote areas, leading to missing telemetry data and out-of-sync inventory counts when they reconnected.",
-      solution: "Developed an offline buffer synchronization queue on the simulated machine nodes. When reconnecting, they bulk upload historical JSON records, which are processed sequentially with lock-free transaction isolation levels in Spring Boot.",
-      learnings: "Gained hands-on experience in AWS VPC setup, RDS backup configurations, and writing robust data synchronization algorithms for intermittently connected systems."
+      problem: "Water processing plants lacked visibility over disconnected vending machines in remote areas, leading to unrecorded cash leakage and manual entry errors.",
+      architecture: "Simulated machine clients sending structured telemetry feeds over secure protocols to a load-balanced Spring Boot microservice, storing relational records in AWS RDS PostgreSQL.",
+      databaseDesign: "PostgreSQL schema using optimized locks and trigger counters to automatically decrement inventory counts when transactions are logged.",
+      challenges: "Intermittent connectivity caused vending logs to arrive out of order, leading to double-decremented inventories and sync discrepancies.",
+      solution: "Created an optimistic concurrency queue using unique transaction timestamps. The backend discards duplicate records and applies transactions in a strict sequence.",
+      learnings: "Deepened knowledge in AWS VPC setups, PostgreSQL transaction isolation configurations, and managing stateful queues in distributed ecosystems."
     }
   },
   {
-    id: "learnsphere",
-    title: "LearnSphere",
-    subtitle: "E-Learning Management Platform",
-    description: "A full-stack e-learning ecosystem featuring a student portal, trainer dashboard, course management, and assignments, secured with JWT and role-based permissions.",
-    longDescription: "LearnSphere is an interactive online education platform that bridges the gap between students and trainers. Students can browse courses, submit assignments, and track their progress, while trainers manage modules, evaluate submissions, and view grade stats. The system utilizes Spring Boot REST APIs and a decoupled React SPA.",
-    techStack: ["Spring Boot", "React", "JWT Authentication", "MySQL", "REST APIs", "Tailwind CSS", "Spring Security"],
+    id: "riskmanagement",
+    title: "Risk Audit Desktop",
+    subtitle: "Tauri-based Risk Compliance Engine",
+    description: "Built a native desktop compliance auditor featuring version history, risk scoring systems, and multi-user approval workflows.",
+    longDescription: "Risk Audit Desktop is a native cross-platform application designed for risk auditing teams. Leveraging Tauri for low memory footprints, React for frontend layouts, and a secure local MySQL instance, it handles complex compliance ratings, tracks document history, and triggers granular approvals.",
+    techStack: ["Rust", "Tauri", "React.js", "TypeScript", "MySQL", "Tailwind CSS", "Framer Motion"],
     features: [
-      "Role-based portals with customized UI for Students, Trainers, and Admins",
-      "Course creation, lesson organization, and file upload systems",
-      "Interactive assignment modules with submission portals and grades",
-      "Automated student progress and lesson completion trackers",
-      "Stat dashboards showing class averages and course performance for trainers"
+      "Native desktop client utilizing Tauri for under 40MB memory footprints",
+      "Dynamic version controller preserving audit histories with rollback indicators",
+      "Compliance scoring formulas calculating portfolio risk values",
+      "Multi-stage approval flows locking reports until supervisor verification"
     ],
-    role: "Lead Full Stack Developer",
+    role: "Core Desktop Developer",
     metrics: [
-      { label: "API Endpoints", value: "35+" },
-      { label: "Auth Type", value: "JWT Tokens" },
-      { label: "Database", value: "MySQL" }
+      { label: "Memory Footprint", value: "< 40MB" },
+      { label: "App Size", value: "~18MB" },
+      { label: "Local Latency", value: "< 5ms" }
     ],
-    githubUrl: "https://github.com/Gani4u/LearnSphear",
-    liveUrl: "https://github.com/Gani4u/LearnSphear",
+    githubUrl: "https://github.com/Akshay-Ak47/riskmanagement",
+    liveUrl: "#",
     caseStudy: {
-      problem: "Traditional educational software systems are overly complex, non-responsive on mobile screens, and struggle with fast, secure file transfers for assignments.",
-      architecture: `
-\`\`\`mermaid
-graph TD
-    ReactApp[React.js SPA] -->|API Calls + JWT| API[Spring Boot REST API]
-    API -->|Spring Security| Security[Token Guard]
-    API -->|Hibernate ORM| DB[(MySQL Database)]
-    API -->|File Storage| LocalDisk[Secure Local Disk Cache]
-\`\`\``,
-      databaseDesign: "MySQL schema containing Course, Module, Lesson, Assignment, Submission, User, and Progress tables. Structured around clean relational integrity.",
-      challenges: "High memory consumption when students downloaded large ZIP file assignments, causing the JVM to hit OutOfMemory exceptions.",
-      solution: "Refactored the file download API from reading entire files into byte arrays to streaming files directly from disk to the client response output stream.",
-      learnings: "Mastered Spring Security configuration patterns, JWT payload signatures, and learned how to optimize file I/O operations in high-concurrency environments."
+      problem: "Enterprise risk auditors required a secure, localized software application to compile vulnerability audits without sending sensitive compliance details outside the local subnet.",
+      architecture: "Rust core managing secure native bindings, spawning Tauri webviews rendering React UI components, communicating directly with local sub-millisecond MySQL instances.",
+      databaseDesign: "Relational schema using local MySQL, with specialized tables for RiskProfile, AuditTrail, ApprovalSign, and VersionControl.",
+      challenges: "Native OS communication over Tauri IPC channels caused minor rendering lag when loading thousands of compliance rows.",
+      solution: "Implemented React virtualized lists and serialized IPC payloads to fetch only visible elements, reducing list load times from 2s to sub-10ms.",
+      learnings: "Gained hands-on experience in Rust memory safety concepts, native OS IPC boundaries, and building compact, high-efficiency desktop products."
     }
   }
 ];
 
-export const secondaryProjects = [
+export const businessSolutions: BusinessSolution[] = [
   {
+    id: "talentconnect",
     title: "Bharath Talent Connect",
-    description: "A professional talent recruitment platform connecting candidates with local recruiters. Built with React, Next.js, and Java backend to streamline matching.",
-    techStack: ["React", "Java", "Spring Boot", "MySQL", "REST APIs"],
-    githubUrl: "https://github.com/Gani4u/bharath-talent-connect"
-  },
-  {
-    title: "Risk Management System",
-    description: "An enterprise risk assessment tool modeling portfolio vulnerability, compliance tracking, and security posture ratings. Designed with highly scalable REST APIs.",
-    techStack: ["Java", "Spring Boot", "PostgreSQL", "JWT", "Hibernate"],
-    githubUrl: "https://github.com/Akshay-Ak47/riskmanagement"
+    description: "Designed a digital candidate-recruiter portal establishing online visibility, attracting local professionals, and showcasing placement portfolios.",
+    techStack: ["React.js", "Java", "Spring Boot", "MySQL", "REST APIs", "CSS3"],
+    githubUrl: "https://github.com/Gani4u/bharath-talent-connect",
+    problem: "A regional recruitment consultancy lacked a reliable, structured digital presence, resulting in manual candidate intake forms, slow consultant response times, and limited candidate reach.",
+    solution: "Designed and engineered a highly responsive placement interface, streamlining candidate registration and job search. Deployed a Java Spring Boot engine to automate application logging and data compilation.",
+    impact: [
+      "Establishes candidate trust with professional digital branding",
+      "Fosters candidate reach, allowing registrations across multiple states",
+      "Automates candidate records management, removing manual email checks",
+      "Enables administrators to display active job vacancies in seconds"
+    ]
   }
 ];

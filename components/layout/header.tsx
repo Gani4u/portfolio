@@ -10,10 +10,16 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
@@ -28,9 +34,8 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 100;
+      const scrollPos = window.scrollY + 120;
       
-      // Determine active section
       for (const link of navLinks) {
         const el = document.getElementById(link.href);
         if (el) {
@@ -43,8 +48,7 @@ export function Header() {
         }
       }
 
-      // Default back to hero if at top
-      if (window.scrollY < 100) {
+      if (window.scrollY < 80) {
         setActiveSection("hero");
       }
     };
@@ -64,14 +68,28 @@ export function Header() {
   if (!mounted) return null;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-neutral-900 bg-black/80 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo / Name */}
+    <header className={`sticky top-0 z-40 w-full transition-all duration-300 border-b border-transparent ${
+      scrolled 
+        ? "h-14 bg-black/60 backdrop-blur-lg border-neutral-900/60" 
+        : "h-16 bg-transparent"
+    }`}>
+      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+        {/* Logo / Monogram "GC" inside a rounded square */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-sm font-semibold tracking-wider font-mono text-neutral-100 hover:text-white transition-colors"
+          className="flex items-center space-x-2.5 focus:outline-none group"
         >
-          GANESH CHAVAN
+          <motion.div
+            whileHover={{ scale: 1.08, rotate: [0, -3, 3, 0] }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="w-8 h-8 rounded-lg border border-neutral-800 bg-neutral-950 flex items-center justify-center font-bold text-xs font-mono text-white shadow-lg"
+          >
+            GC
+          </motion.div>
+          <span className="text-xs font-semibold tracking-wider font-mono text-neutral-400 group-hover:text-white transition-colors uppercase hidden sm:inline-block">
+            Ganesh Chavan
+          </span>
         </button>
 
         {/* Desktop Nav */}
@@ -80,9 +98,9 @@ export function Header() {
             <button
               key={link.href}
               onClick={() => scrollToSection(link.href)}
-              className={`text-xs px-3 py-1.5 rounded-md transition-colors relative ${
+              className={`text-xs px-3.5 py-1.5 rounded-md transition-colors relative ${
                 activeSection === link.href
-                  ? "text-neutral-100 font-medium"
+                  ? "text-white font-medium"
                   : "text-neutral-500 hover:text-neutral-300"
               }`}
             >
@@ -90,7 +108,7 @@ export function Header() {
               {activeSection === link.href && (
                 <motion.span
                   layoutId="activeNavBackground"
-                  className="absolute inset-0 bg-neutral-900/50 rounded-md -z-10"
+                  className="absolute inset-0 bg-neutral-900/40 rounded-md -z-10"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -128,7 +146,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-neutral-900 bg-neutral-950/95"
+            className="md:hidden border-b border-neutral-900 bg-black/95 backdrop-blur-md"
           >
             <div className="px-6 py-4 flex flex-col space-y-3">
               {navLinks.map((link) => (

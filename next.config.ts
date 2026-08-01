@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/portfolio",
-  assetPrefix: "/portfolio/",
+  // Set basePath dynamically: empty string in local development, '/portfolio' in production deployment
+  basePath: isProd ? "/portfolio" : undefined,
+  assetPrefix: isProd ? "/portfolio/" : undefined,
   images: {
     unoptimized: true,
   },

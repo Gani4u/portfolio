@@ -107,12 +107,12 @@ export function CommandPalette() {
     // Projects
     {
       icon: <Terminal className="w-4 h-4" />,
-      label: "Project: eJTime (SaaS Workforce System)",
+      label: "Project: Risk Audit Desktop (Tauri Compliance App)",
       category: "Projects",
       action: () => {
         scrollToSection("projects");
         setTimeout(() => {
-          const btn = document.getElementById("btn-case-study-ejtime");
+          const btn = document.getElementById("btn-case-study-riskmanagement");
           if (btn) btn.click();
         }, 300);
       },
@@ -170,7 +170,7 @@ export function CommandPalette() {
       label: "LinkedIn Profile",
       category: "Contact",
       action: () => {
-        window.open("https://www.linkedin.com/in/ganesh-chavan-a6b189288", "_blank");
+        window.open("https://www.linkedin.com/in/ganesh-chavan-35435526b", "_blank");
         setOpen(false);
       },
     },

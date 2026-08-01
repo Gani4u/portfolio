@@ -14,27 +14,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ganesh Chavan | Full Stack Developer | Java & Next.js Specialist",
-  description: "Portfolio of Ganesh Chavan, a Full Stack Developer specializing in Java, Spring Boot, NestJS, Next.js, and AWS. Building high-performance, secure backend systems and minimal frontend experiences.",
+  title: "Ganesh Chavan | Backend & Full Stack Engineer | Java & Spring Specialist",
+  description: "Professional portfolio of Ganesh Chavan, a Full Stack Developer specializing in Java backend architectures, Spring Boot ecosystems, NestJS modules, and Next.js interfaces. Engineering scalable software that solves real business problems.",
   keywords: [
     "Ganesh Chavan",
     "Full Stack Developer",
     "Java Developer",
-    "Spring Boot",
-    "NestJS",
-    "Next.js",
-    "React",
+    "Spring Boot Developer",
+    "Backend Engineer",
+    "NestJS Developer",
+    "Next.js Developer",
+    "React Engineer",
+    "AWS Architect",
     "Mysuru",
     "Bangalore",
-    "AWS",
-    "TypeScript",
-    "eJTime",
-    "Developer Portfolio"
+    "India",
+    "Developer Portfolio",
+    "Software Engineer Portfolio"
   ],
   authors: [{ name: "Ganesh Chavan", url: "https://github.com/Gani4u" }],
   openGraph: {
-    title: "Ganesh Chavan | Full Stack Developer",
-    description: "Portfolio of Ganesh Chavan, specializing in Java, Spring Boot, NestJS, Next.js, and AWS.",
+    title: "Ganesh Chavan | Backend & Full Stack Engineer",
+    description: "Professional portfolio of Ganesh Chavan, specializing in Java backend architectures, Spring Boot, NestJS, and Next.js.",
     url: "https://Gani4u.github.io/portfolio",
     siteName: "Ganesh Chavan Portfolio",
     type: "website",
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#030303",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
@@ -72,7 +73,7 @@ export default function RootLayout({
     "url": "https://Gani4u.github.io/portfolio",
     "sameAs": [
       "https://github.com/Gani4u",
-      "https://www.linkedin.com/in/ganesh-chavan-a6b189288"
+      "https://www.linkedin.com/in/ganesh-chavan-35435526b"
     ],
     "knowsAbout": [
       "Java",
@@ -84,7 +85,9 @@ export default function RootLayout({
       "MySQL",
       "PostgreSQL",
       "AWS",
-      "TypeScript"
+      "TypeScript",
+      "Tauri",
+      "Rust"
     ]
   };
 
@@ -100,7 +103,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#030303] text-neutral-100 selection:bg-neutral-850 selection:text-white">
+      <body className="min-h-full flex flex-col bg-black text-neutral-100 selection:bg-neutral-850 selection:text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
