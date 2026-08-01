@@ -5,7 +5,7 @@ import { FileText, Download, Eye } from "lucide-react";
 
 export function ResumeSection() {
   const handlePreview = () => {
-    window.open("/resume.pdf", "_blank");
+    window.open("/portfolio/resume.pdf", "_blank");
   };
 
   return (
@@ -83,7 +83,7 @@ export function ResumeSection() {
                 <span>Preview Resume</span>
               </button>
               <a
-                href="/resume.pdf"
+                href="/portfolio/resume.pdf"
                 download="Ganesh_Chavan_Resume.pdf"
                 className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-black bg-white hover:bg-neutral-200 transition-colors cursor-pointer shadow-md"
               >

@@ -62,8 +62,38 @@ export function InteractiveGrid() {
 
     let gridOffset = 0;
 
-    const drawGrid = (ctx: CanvasRenderingContext2D, opacity = 0.05) => {
-      ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+    const animate = () => {
+      const isLight = document.documentElement.classList.contains("light");
+      const rgbColor = isLight ? "0, 0, 0" : "255, 255, 255";
+      const overlayColor = isLight ? "250, 250, 250" : "3, 3, 3";
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Background fill
+      ctx.fillStyle = isLight ? "#fafafa" : "#030303";
+      ctx.fillRect(0, 0, width, height);
+
+      // Radial mouse glow
+      if (mouse.x > -1000) {
+        const glow = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          mouse.radius
+        );
+        glow.addColorStop(0, `rgba(${rgbColor}, ${isLight ? "0.04" : "0.07"})`);
+        glow.addColorStop(1, `rgba(${rgbColor}, 0)`);
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // Move grid slowly downwards
+      gridOffset += 0.15;
+      
+      // Draw Grid
+      ctx.strokeStyle = `rgba(${rgbColor}, 0.04)`;
       ctx.lineWidth = 1;
       const gridSize = 60;
 
@@ -82,39 +112,8 @@ export function InteractiveGrid() {
         ctx.lineTo(width, y);
         ctx.stroke();
       }
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      // Dark background
-      ctx.fillStyle = "#030303";
-      ctx.fillRect(0, 0, width, height);
-
-      // Radial mouse glow (Stripe/Linear style)
-      if (mouse.x > -1000) {
-        const glow = ctx.createRadialGradient(
-          mouse.x,
-          mouse.y,
-          0,
-          mouse.x,
-          mouse.y,
-          mouse.radius
-        );
-        glow.addColorStop(0, "rgba(255, 255, 255, 0.07)");
-        glow.addColorStop(1, "rgba(255, 255, 255, 0)");
-        ctx.fillStyle = glow;
-        ctx.fillRect(0, 0, width, height);
-      }
-
-      // Move grid slowly downwards
-      gridOffset += 0.15;
-      
-      // Draw Grid
-      drawGrid(ctx, 0.04);
 
       // Draw and update particles
-      ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         p.x += p.speedX;
@@ -136,7 +135,7 @@ export function InteractiveGrid() {
           }
         }
 
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fillStyle = `rgba(${rgbColor}, ${isLight ? p.opacity * 0.5 : p.opacity})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -144,14 +143,14 @@ export function InteractiveGrid() {
 
       // Top and bottom overlay gradient (to fade edges into main body background)
       const topGrad = ctx.createLinearGradient(0, 0, 0, 150);
-      topGrad.addColorStop(0, "rgba(3, 3, 3, 1)");
-      topGrad.addColorStop(1, "rgba(3, 3, 3, 0)");
+      topGrad.addColorStop(0, `rgba(${overlayColor}, 1)`);
+      topGrad.addColorStop(1, `rgba(${overlayColor}, 0)`);
       ctx.fillStyle = topGrad;
       ctx.fillRect(0, 0, width, 150);
 
       const bottomGrad = ctx.createLinearGradient(0, height - 200, 0, height);
-      bottomGrad.addColorStop(0, "rgba(3, 3, 3, 0)");
-      bottomGrad.addColorStop(1, "rgba(3, 3, 3, 1)");
+      bottomGrad.addColorStop(0, `rgba(${overlayColor}, 0)`);
+      bottomGrad.addColorStop(1, `rgba(${overlayColor}, 1)`);
       ctx.fillStyle = bottomGrad;
       ctx.fillRect(0, height - 200, width, 200);
 

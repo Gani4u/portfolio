@@ -104,7 +104,7 @@ export function Hero() {
             className="flex flex-wrap gap-3 pt-2 w-full sm:w-auto"
           >
             <a
-              href="/resume.pdf"
+              href="/portfolio/resume.pdf"
               download="Ganesh_Chavan_Resume.pdf"
               className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-medium text-black bg-white hover:bg-neutral-200 transition-colors cursor-pointer w-full sm:w-auto shadow-md"
             >
@@ -143,7 +143,7 @@ export function Hero() {
             <div className="absolute inset-4 rounded-full border border-neutral-800 bg-neutral-950/60 backdrop-blur-sm overflow-hidden p-3 flex items-center justify-center">
               <div className="relative w-full h-full rounded-full overflow-hidden border border-neutral-700/40">
                 <Image
-                  src="/images/avatar.jpg"
+                  src="/portfolio/images/avatar.jpg"
                   alt="Ganesh Chavan"
                   fill
                   priority

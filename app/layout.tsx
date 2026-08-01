@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ganesh Chavan | Full Stack Developer",
     description: "Portfolio of Ganesh Chavan, specializing in Java, Spring Boot, NestJS, Next.js, and AWS.",
-    url: "https://Gani4u.github.io",
+    url: "https://Gani4u.github.io/portfolio",
     siteName: "Ganesh Chavan Portfolio",
     type: "website",
     locale: "en_US",
@@ -69,7 +69,7 @@ export default function RootLayout({
     "@type": "Person",
     "name": "Ganesh Chavan",
     "jobTitle": "Full Stack Developer",
-    "url": "https://Gani4u.github.io",
+    "url": "https://Gani4u.github.io/portfolio",
     "sameAs": [
       "https://github.com/Gani4u",
       "https://www.linkedin.com/in/ganesh-chavan-a6b189288"
