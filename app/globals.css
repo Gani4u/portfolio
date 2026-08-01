@@ -100,7 +100,7 @@ body {
   color: #3f3f46 !important;
 }
 
-.light .text-white {
+.light .text-white:not([style*="color"]) {
   color: #09090b !important;
 }
 

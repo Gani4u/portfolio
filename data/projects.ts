@@ -26,6 +26,7 @@ export interface BusinessSolution {
   description: string;
   techStack: string[];
   githubUrl?: string;
+  liveUrl?: string;
   problem: string;
   solution: string;
   impact: string[];
@@ -133,6 +134,7 @@ export const businessSolutions: BusinessSolution[] = [
     description: "Designed a digital candidate-recruiter portal establishing online visibility, attracting local professionals, and showcasing placement portfolios.",
     techStack: ["React.js", "Java", "Spring Boot", "MySQL", "REST APIs", "CSS3"],
     githubUrl: "https://github.com/Gani4u/bharath-talent-connect",
+    liveUrl: "https://gani4u.github.io/bharath-talent-connect",
     problem: "A regional recruitment consultancy lacked a reliable, structured digital presence, resulting in manual candidate intake forms, slow consultant response times, and limited candidate reach.",
     solution: "Designed and engineered a highly responsive placement interface, streamlining candidate registration and job search. Deployed a Java Spring Boot engine to automate application logging and data compilation.",
     impact: [

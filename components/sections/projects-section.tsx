@@ -236,6 +236,17 @@ export function ProjectsSection() {
                       <span>Explore Case Study</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
+                    {solution.liveUrl && (
+                      <a
+                        href={solution.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg border border-neutral-900 hover:border-neutral-800 text-neutral-500 hover:text-neutral-300 transition-colors"
+                        aria-label="Live Demo"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
                     {solution.githubUrl && (
                       <a
                         href={solution.githubUrl}

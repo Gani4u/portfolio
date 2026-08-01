@@ -8,6 +8,7 @@ import { InteractiveGrid } from "../ui/interactive-grid";
 
 export function Hero() {
   const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+  const badgeClassName = "absolute bg-white/90 border border-neutral-200 text-neutral-800 dark:bg-neutral-950/80 dark:border-neutral-800 dark:text-neutral-200 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-mono shadow-xl transition-colors duration-300";
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -181,17 +182,17 @@ export function Hero() {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute top-6 right-6 bg-neutral-950/80 border border-neutral-900 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-mono text-neutral-300 shadow-xl"
+              className={`${badgeClassName} top-6 right-6`}
             >
-              Backend Architect
+              Java Backend Specialist
             </motion.div>
 
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-6 left-6 bg-neutral-950/80 border border-neutral-900 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-[10px] font-mono text-neutral-300 shadow-xl"
+              className={`${badgeClassName} bottom-6 left-6`}
             >
-              Enterprise SaaS
+              Enterprise SaaS Experience
             </motion.div>
           </div>
         </motion.div>

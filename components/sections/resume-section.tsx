@@ -32,9 +32,9 @@ export function ResumeSection() {
               className="relative w-64 h-80 bg-neutral-950 rounded-xl border border-neutral-850 shadow-2xl p-5 overflow-hidden group cursor-pointer hover:border-neutral-750 transition-all flex flex-col justify-between"
             >
               {/* Overlay hover effect */}
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20">
-                <span className="flex items-center space-x-1.5 text-xs text-white bg-neutral-900/90 px-3.5 py-2 rounded-lg border border-neutral-800 font-mono shadow-lg">
-                  <Eye className="w-3.5 h-3.5" />
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20">
+                <span className="flex items-center space-x-1.5 text-xs px-3.5 py-2 rounded-lg border font-mono shadow-lg" style={{ backgroundColor: "rgba(10, 10, 10, 0.95)", color: "#ffffff", borderColor: "#262626" }}>
+                  <Eye className="w-3.5 h-3.5" style={{ stroke: "#ffffff" }} />
                   <span>Open Document</span>
                 </span>
               </div>
