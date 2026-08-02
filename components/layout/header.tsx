@@ -86,8 +86,8 @@ export function Header() {
             }}
             className="flex items-center space-x-2 focus:outline-none group cursor-pointer"
           >
-            <span className="text-lg md:text-xl font-bold tracking-tight lowercase text-white transition-colors duration-200">
-              Ganesh<span className="text-neutral-400 font-light">chavan</span>
+            <span className="text-lg md:text-xl font-bold tracking-tight text-white transition-colors duration-200">
+              Ganesh <span className="text-neutral-450 dark:text-neutral-400 font-light">Chavan</span>
             </span>
           </button>
 

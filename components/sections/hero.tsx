@@ -38,7 +38,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-black py-20 px-6">
+    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-black pt-28 md:pt-36 pb-20 px-6">
       {/* Canvas interactive background grid */}
       <InteractiveGrid />
 

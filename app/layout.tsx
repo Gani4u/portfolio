@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -110,6 +111,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

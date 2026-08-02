@@ -317,3 +317,12 @@ body {
   background-color: #dbeafe !important;
   color: #1e40af !important;
 }
+
+/* Custom Cursor Hiding */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
