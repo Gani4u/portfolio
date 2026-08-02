@@ -76,9 +76,49 @@ body {
 }
 
 .light header {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  border-color: #e4e4e7 !important;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.light .floating-nav-pill {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(228, 228, 231, 0.8) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light .floating-nav-link {
+  color: #52525b !important;
+}
+
+.light .floating-nav-link:hover {
+  color: #09090b !important;
+}
+
+.light .floating-nav-link-active {
+  color: #09090b !important;
+  font-weight: 500 !important;
+}
+
+.light .active-nav-bg {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.contact-cta-btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.contact-cta-btn:hover {
+  background-color: #e4e4e7 !important;
+}
+
+.light .contact-cta-btn {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+}
+.light .contact-cta-btn:hover {
+  background-color: #27272a !important;
 }
 
 .light footer {

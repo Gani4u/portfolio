@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { CommandPalette } from "../ui/command-palette";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, Search, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -68,102 +68,141 @@ export function Header() {
   if (!mounted) return null;
 
   return (
-    <header className={`sticky top-0 z-40 w-full transition-all duration-300 border-b border-transparent ${
-      scrolled 
-        ? "h-14 bg-black/60 backdrop-blur-lg border-neutral-900/60" 
-        : "h-16 bg-transparent"
+    <header className={`fixed top-0 left-0 right-0 z-50 w-full flex justify-center pointer-events-none transition-all duration-300 ${
+      scrolled ? "pt-3 md:pt-4" : "pt-5 md:pt-6"
     }`}>
-      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-        {/* Logo / Monogram "GC" inside a rounded square */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center space-x-2.5 focus:outline-none group"
-        >
-          <motion.div
-            whileHover={{ scale: 1.08, rotate: [0, -3, 3, 0] }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="w-8 h-8 rounded-lg border border-neutral-800 bg-neutral-950 flex items-center justify-center font-bold text-xs font-mono text-white shadow-lg"
+      <div className={`floating-nav-pill pointer-events-auto w-[calc(100%-2rem)] md:w-full max-w-5xl transition-all duration-300 border bg-neutral-950/75 border-neutral-800/80 backdrop-blur-xl shadow-xl flex flex-col justify-center px-6 ${
+        mobileMenuOpen 
+          ? "rounded-2xl py-4 space-y-4 h-auto" 
+          : `rounded-full ${scrolled ? "h-14" : "h-16"}`
+      }`}>
+        {/* Main Bar */}
+        <div className="flex w-full items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setMobileMenuOpen(false);
+            }}
+            className="flex items-center space-x-2 focus:outline-none group cursor-pointer"
           >
-            GC
-          </motion.div>
-          <span className="text-xs font-semibold tracking-wider font-mono text-neutral-400 group-hover:text-white transition-colors uppercase hidden sm:inline-block">
-            Ganesh Chavan
-          </span>
-        </button>
+            <span className="text-lg md:text-xl font-bold tracking-tight lowercase text-white transition-colors duration-200">
+              Ganesh<span className="text-neutral-400 font-light">chavan</span>
+            </span>
+          </button>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-1">
-          {navLinks.map((link) => (
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-1">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className={`floating-nav-link text-xs px-3.5 py-1.5 rounded-full transition-colors relative cursor-pointer ${
+                  activeSection === link.href
+                    ? "floating-nav-link-active text-white font-medium"
+                    : "text-neutral-400 hover:text-neutral-200"
+                }`}
+              >
+                <span className="relative z-10">{link.label}</span>
+                {activeSection === link.href && (
+                  <motion.span
+                    layoutId="activeNavBackground"
+                    className="active-nav-bg absolute inset-0 bg-white/10 rounded-full z-0"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
+          </nav>
+
+          {/* Right Actions */}
+          <div className="flex items-center space-x-2">
+            {/* Theme Toggle (Desktop) */}
             <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className={`text-xs px-3.5 py-1.5 rounded-md transition-colors relative ${
-                activeSection === link.href
-                  ? "text-white font-medium"
-                  : "text-neutral-500 hover:text-neutral-300"
-              }`}
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="hidden md:flex p-2.5 rounded-full border border-neutral-800 hover:border-neutral-700 bg-neutral-950/40 text-neutral-400 hover:text-neutral-200 transition-all cursor-pointer"
+              aria-label="Toggle Theme"
             >
-              {link.label}
-              {activeSection === link.href && (
-                <motion.span
-                  layoutId="activeNavBackground"
-                  className="absolute inset-0 bg-neutral-900/40 rounded-md -z-10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
+              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-          ))}
-        </nav>
 
-        {/* Actions */}
-        <div className="flex items-center space-x-3">
-          <CommandPalette />
+            {/* Search Trigger (Desktop) */}
+            <div className="hidden md:block">
+              <CommandPalette trigger={
+                <button className="p-2.5 rounded-full border border-neutral-800 hover:border-neutral-700 bg-neutral-950/40 text-neutral-400 hover:text-neutral-200 transition-all cursor-pointer">
+                  <Search className="w-4 h-4" />
+                </button>
+              } />
+            </div>
 
-          {/* Theme Toggle */}
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-lg border border-neutral-900 hover:border-neutral-800 text-neutral-400 hover:text-neutral-200 transition-all bg-neutral-950/40"
-            aria-label="Toggle Theme"
-          >
-            {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
+            {/* Contact CTA (Desktop) */}
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="contact-cta-btn hidden md:flex items-center space-x-1.5 px-5 py-2 rounded-full text-xs font-semibold shadow-lg group cursor-pointer"
+            >
+              <span>Contact Us</span>
+              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-neutral-400 hover:text-neutral-200"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            {/* Mobile Controls (Search, Theme, Hamburger Menu) */}
+            <div className="flex md:hidden items-center space-x-1.5">
+              <CommandPalette trigger={
+                <button className="p-2 rounded-full border border-neutral-800 bg-neutral-950/40 text-neutral-400 hover:text-neutral-200 transition-all cursor-pointer">
+                  <Search className="w-4 h-4" />
+                </button>
+              } />
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full border border-neutral-800 bg-neutral-950/40 text-neutral-400 hover:text-neutral-200 transition-all cursor-pointer"
+                aria-label="Toggle Theme"
+              >
+                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-full border border-neutral-800 bg-neutral-950/40 text-neutral-400 hover:text-neutral-200 transition-all cursor-pointer"
+              >
+                {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Mobile Nav Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-neutral-900 bg-black/95 backdrop-blur-md"
-          >
-            <div className="px-6 py-4 flex flex-col space-y-3">
+        {/* Mobile Expandable Drawer inside the floating container */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden w-full flex flex-col space-y-2 pt-3 border-t border-neutral-900/60 light:border-neutral-200/50"
+            >
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className={`text-sm text-left py-1.5 transition-colors ${
-                    activeSection === link.href ? "text-white font-medium" : "text-neutral-400 hover:text-neutral-200"
+                  className={`text-sm text-left py-2.5 px-3.5 rounded-xl transition-colors w-full cursor-pointer ${
+                    activeSection === link.href
+                      ? "bg-white/10 text-white font-medium light:bg-black/5 light:text-black"
+                      : "text-neutral-400 hover:text-neutral-200 light:text-neutral-500 light:hover:text-neutral-950"
                   }`}
                 >
                   {link.label}
                 </button>
               ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="contact-cta-btn flex items-center justify-center space-x-1.5 py-3 rounded-full text-sm font-semibold shadow-lg w-full mt-2 cursor-pointer"
+              >
+                <span>Contact Us</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </header>
   );
 }
+

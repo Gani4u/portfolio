@@ -27,7 +27,11 @@ interface CommandItem {
   action: () => void;
 }
 
-export function CommandPalette() {
+interface CommandPaletteProps {
+  trigger?: React.ReactElement<any>;
+}
+
+export function CommandPalette({ trigger }: CommandPaletteProps) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -247,15 +251,24 @@ export function CommandPalette() {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="hidden md:flex items-center space-x-2 text-xs text-neutral-400 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 px-3 py-1.5 rounded-lg transition-all"
-      >
-        <span>Search portfolio...</span>
-        <kbd className="bg-neutral-800 text-neutral-400 px-1.5 py-0.5 rounded border border-neutral-700 text-[10px] font-mono leading-none">
-          Ctrl K
-        </kbd>
-      </button>
+      {trigger ? (
+        React.cloneElement(trigger, {
+          onClick: (e: React.MouseEvent) => {
+            if (trigger.props.onClick) trigger.props.onClick(e);
+            setOpen(true);
+          },
+        })
+      ) : (
+        <button
+          onClick={() => setOpen(true)}
+          className="hidden md:flex items-center space-x-2 text-xs text-neutral-400 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 px-3 py-1.5 rounded-lg transition-all"
+        >
+          <span>Search portfolio...</span>
+          <kbd className="bg-neutral-800 text-neutral-400 px-1.5 py-0.5 rounded border border-neutral-700 text-[10px] font-mono leading-none">
+            Ctrl K
+          </kbd>
+        </button>
+      )}
 
       <AnimatePresence>
         {open && (
