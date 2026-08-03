@@ -54,7 +54,7 @@ export const projects: Project[] = [
       { label: "Grade Accuracy", value: "100%" }
     ],
     githubUrl: "https://github.com/Gani4u/LearnSphear",
-    liveUrl: "https://github.com/Gani4u/LearnSphear",
+    liveUrl: "https://gani4u.github.io/LearnSphear/",
     caseStudy: {
       problem: "Traditional educational software systems are clunky, lack mobile-first responsiveness, and experience server latency bottlenecks during bulk file uploads for assignments.",
       architecture: "React SPA Frontend communicating via secure REST APIs with a Spring Boot Service Layer, backed by a relational MySQL DB and optimized disk streaming buffers.",

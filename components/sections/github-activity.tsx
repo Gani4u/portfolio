@@ -18,7 +18,7 @@ export function GithubActivity() {
     {
       name: "LearnSpear",
       description: "E-Learning course manager backend built with Spring Boot, secure JWT APIs, and responsive React dashboards.",
-      html_url: "https://github.com/Gani4u/LearnSphear",
+      html_url: "https://gani4u.github.io/LearnSphear/",
       stargazers_count: 2,
       forks_count: 0,
       language: "Java",
