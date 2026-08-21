@@ -11,7 +11,7 @@ export function Footer() {
         <div>
           <p className="font-semibold text-neutral-350">Designed and engineered by Ganesh Chavan.</p>
           <p className="mt-1 text-neutral-600">
-            Built with Next.js, TypeScript, Tailwind CSS and Framer Motion. Hosted on GitHub Pages.
+            Built with Next.js, TypeScript, Tailwind CSS and Framer Motion.
           </p>
         </div>
 
