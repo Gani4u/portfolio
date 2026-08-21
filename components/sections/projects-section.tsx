@@ -37,30 +37,38 @@ export function ProjectsSection() {
             </div>
           </div>
         );
-      case "aquatrack":
+      case "tsd":
         return (
           <div className="border border-neutral-800 rounded-lg p-6 bg-neutral-950 font-mono text-xs text-neutral-400 space-y-4">
             <div className="text-center font-bold text-white border-b border-neutral-900 pb-2 mb-4">
-              Cloud Service Topology
+              TSD World System Flow
             </div>
             <div className="flex flex-col items-center space-y-3">
-              <div className="px-4 py-2 border border-neutral-700 bg-neutral-900 text-white rounded text-center w-full max-w-sm">
-                React Frontend Analytics Portal
+              <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
+                <div className="px-3 py-2 border border-neutral-800 bg-neutral-900 text-neutral-200 rounded text-center">
+                  Customer Store (React Web)
+                </div>
+                <div className="px-3 py-2 border border-neutral-800 bg-neutral-900 text-neutral-200 rounded text-center">
+                  Admin Panel (Tauri Desktop)
+                </div>
               </div>
               <div className="h-6 w-0.5 bg-neutral-800" />
               <div className="px-4 py-2 border border-neutral-700 bg-neutral-900 text-white rounded text-center w-full max-w-sm relative">
-                AWS EC2: Spring Boot API Server
-                <span className="absolute right-2 top-2 text-[9px] bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-400">
-                  Hibernate ORM
+                Hostinger Server (PHP REST API)
+                <span className="absolute right-2 top-2 text-[9px] bg-neutral-850 px-1.5 py-0.5 rounded text-neutral-400">
+                  CORS Enabled
                 </span>
               </div>
               <div className="h-6 w-0.5 bg-neutral-800" />
-              <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
-                <div className="px-3 py-2 border border-neutral-850 bg-neutral-950 text-neutral-300 rounded text-center">
-                  AWS RDS PostgreSQL
+              <div className="grid grid-cols-3 gap-2 w-full max-w-sm">
+                <div className="px-2 py-2 border border-neutral-850 bg-neutral-950 text-neutral-300 rounded text-center text-[10px]">
+                  MySQL DB
                 </div>
-                <div className="px-3 py-2 border border-neutral-850 bg-neutral-950 text-neutral-300 rounded text-center">
-                  AWS S3 File Storage
+                <div className="px-2 py-2 border border-neutral-850 bg-neutral-950 text-neutral-300 rounded text-center text-[10px]">
+                  Razorpay SDK
+                </div>
+                <div className="px-2 py-2 border border-neutral-850 bg-neutral-950 text-neutral-300 rounded text-center text-[10px]">
+                  Shipment API
                 </div>
               </div>
             </div>

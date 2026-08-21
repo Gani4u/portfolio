@@ -123,12 +123,12 @@ export function CommandPalette({ trigger }: CommandPaletteProps) {
     },
     {
       icon: <Terminal className="w-4 h-4" />,
-      label: "Project: AquaTrack (Water Management)",
+      label: "Project: TSD World (E-commerce & Admin)",
       category: "Projects",
       action: () => {
         scrollToSection("projects");
         setTimeout(() => {
-          const btn = document.getElementById("btn-case-study-aquatrack");
+          const btn = document.getElementById("btn-case-study-tsd");
           if (btn) btn.click();
         }, 300);
       },

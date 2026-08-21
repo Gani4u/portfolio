@@ -65,34 +65,34 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "aquatrack",
-    title: "AquaTrack",
-    subtitle: "Industrial Water Plant Manager",
-    description: "Architected a cloud-integrated telemetry system tracking production stock, export flows, vending machines, and revenue metrics in real-time.",
-    longDescription: "AquaTrack is an industrial plant analytics platform linking remote physical water vending terminals to a centralized database. Deployed securely on AWS, it delivers granular auditing controls over raw supplies, bottles, cap inventories, distributor shipments, and automated sales reporting.",
-    techStack: ["Spring Boot", "Hibernate ORM", "PostgreSQL", "AWS EC2", "AWS RDS", "AWS S3", "React.js", "Chart.js"],
+    id: "tsd",
+    title: "TSD World",
+    subtitle: "Full-Stack E-Commerce & Desktop Admin Panel",
+    description: "Designed a centralized full-stack e-commerce system featuring a React customer store, PHP REST APIs, Razorpay and shipping integrations, and a Tauri desktop administration application.",
+    longDescription: "TSD World is a complete tech and audio accessories e-commerce ecosystem consisting of a React-based customer store and a secure Tauri desktop admin application, both interacting with a centralized PHP REST API and MySQL database. The customer store features interactive shopping carts, Cash on Delivery, and Razorpay integrations. The admin app allows remote management of products, real-time stock levels, and product images without exposing database credentials.",
+    techStack: ["React.js", "Tauri", "TypeScript", "PHP", "MySQL", "Razorpay API", "REST APIs", "Tailwind CSS"],
     features: [
-      "Telemetry buffers syncing sales and machine statuses dynamically",
-      "Raw materials inventory logging covering water supplies, caps, and chemical agents",
-      "Shipment manifests tracking distributors, load sizes, and routes",
-      "AWS S3 resource archive securing PDF receipts and billing files",
-      "Manager panels displaying real-time profit margins and stock predictions"
+      "Centralized PHP/MySQL database supporting synchronized customer and desktop admin systems",
+      "Secure Tauri-based desktop administrator client for remote CRUD operations, stock management, and status configurations",
+      "Server-side inventory validation and automated stock deduction to prevent overselling",
+      "Secure online checkouts integrated with Razorpay PHP SDK containing server-side signature verification",
+      "Product image gallery system managing remote Hostinger assets via API references"
     ],
-    role: "Cloud Backend Architect",
+    role: "Lead Full-Stack & Desktop Developer",
     metrics: [
-      { label: "Telemetry Delay", value: "< 2s" },
-      { label: "Sync Rates", value: "99.9%" },
-      { label: "RDS Response", value: "~45ms" }
+      { label: "Tauri App Size", value: "~15MB" },
+      { label: "Stock Sync Time", value: "Real-time" },
+      { label: "CORS Endpoints", value: "Secured" }
     ],
-    githubUrl: "https://github.com/Akshay-Ak47/riskmanagement",
-    liveUrl: "#",
+    githubUrl: "https://github.com/Gani4u/tsd",
+    liveUrl: "https://tsdworld.com",
     caseStudy: {
-      problem: "Water processing plants lacked visibility over disconnected vending machines in remote areas, leading to unrecorded cash leakage and manual entry errors.",
-      architecture: "Simulated machine clients sending structured telemetry feeds over secure protocols to a load-balanced Spring Boot microservice, storing relational records in AWS RDS PostgreSQL.",
-      databaseDesign: "PostgreSQL schema using optimized locks and trigger counters to automatically decrement inventory counts when transactions are logged.",
-      challenges: "Intermittent connectivity caused vending logs to arrive out of order, leading to double-decremented inventories and sync discrepancies.",
-      solution: "Created an optimistic concurrency queue using unique transaction timestamps. The backend discards duplicate records and applies transactions in a strict sequence.",
-      learnings: "Deepened knowledge in AWS VPC setups, PostgreSQL transaction isolation configurations, and managing stateful queues in distributed ecosystems."
+      problem: "The customer-facing React e-commerce site lacked integrated stock validation and a secure, non-technical dashboard to manage catalog updates, inventory, and multiple product images without risking direct database access.",
+      architecture: "A shared REST API backend (PHP/MySQL) hosted on Hostinger serving both a customer web store and a Tauri+React native desktop admin app via CORS-enabled channels.",
+      databaseDesign: "MySQL relational schema managing products, product_images, orders, and order_items tables, with relative file paths for remote assets to support portable host domain migrations.",
+      challenges: "Securing inventory quantities against concurrent double-ordering on the web frontend, and allowing the desktop client to manage remote database assets securely without storing database credentials locally.",
+      solution: "Implemented server-side validation during order placement with automatic stock decrements in the REST API, and built an HTTP-based service layer in Tauri that interacts strictly over CORS-configured PHP APIs.",
+      learnings: "Mastered Tauri's desktop-to-web IPC/CORS communication, designed lightweight transactional REST APIs, and implemented robust server-side payment signature verification and stock safety mechanisms."
     }
   },
   {
